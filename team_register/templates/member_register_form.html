@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block styles %}
+# <link rel="stylesheet" href="{% static 'team_register_styles.css' %}" type='text/css'>
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div id= "wrapper">
+
+<h3> Register your team here </h3>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+  </form>
+
+  <p><a href="{% url 'index' %}">Return to home</a></p>
+{% else %}
+<h1> Sign In to view this page</h1>
+{%endif%}
+</div>
+{%endblock%}
